@@ -31,3 +31,5 @@ C:\Users\fatihfurkan.DESKTOP-LDVGTNI\Desktop\Github\BlogProject\MyBranch\BlogPro
 C:\Users\fatihfurkan.DESKTOP-LDVGTNI\Desktop\Github\BlogProject\MyBranch\BlogProject\BlogProject.API\obj\Debug\netcoreapp2.2\BlogProject.API.csproj.CopyComplete
 C:\Users\fatihfurkan.DESKTOP-LDVGTNI\Desktop\Github\BlogProject\MyBranch\BlogProject\BlogProject.API\obj\Debug\netcoreapp2.2\BlogProject.API.dll
 C:\Users\fatihfurkan.DESKTOP-LDVGTNI\Desktop\Github\BlogProject\MyBranch\BlogProject\BlogProject.API\obj\Debug\netcoreapp2.2\BlogProject.API.pdb
+C:\Users\fatihfurkan.DESKTOP-LDVGTNI\Desktop\Github\BlogProject\MyBranch\BlogProject\BlogProject.API\bin\Debug\netcoreapp2.2\BusinessLayer.dll
+C:\Users\fatihfurkan.DESKTOP-LDVGTNI\Desktop\Github\BlogProject\MyBranch\BlogProject\BlogProject.API\bin\Debug\netcoreapp2.2\BusinessLayer.pdb
