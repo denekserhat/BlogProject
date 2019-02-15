@@ -13,6 +13,6 @@ namespace Entities
         public string OnModifiedUsername { get; set; }
 
         public Note Note { get; set; }
-        public int NoteId { get; set; }
+        public int? NoteId { get; set; }
     }
 }
