@@ -36,8 +36,6 @@ namespace BlogProject.API
             services.AddScoped<IRepository<User>, Repository<User>>();
             services.AddScoped(typeof(UserManager));
             services.AddScoped(typeof(BlogContext));
-            services.AddScoped<IRepository<User>, Repository<User>>();
-            services.AddScoped(typeof(UserManager));
             services.AddTransient<MyInitiliazer>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
