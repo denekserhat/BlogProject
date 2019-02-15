@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BusinessLayer;
 using DataAccessLayer;
+using Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +33,8 @@ namespace BlogProject.API
             //db connection
             services.AddDbContext<BlogContext>(x => x.UseSqlServer(connection, b=> b.MigrationsAssembly("BlogProject.API")));
             //created for dependency injection
+            services.AddScoped<IRepository<User>, Repository<User>>();
+            services.AddScoped(typeof(UserManager));
             services.AddScoped(typeof(BlogContext));
             services.AddTransient<MyInitiliazer>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
