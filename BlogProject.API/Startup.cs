@@ -33,6 +33,8 @@ namespace BlogProject.API
             //db connection
             services.AddDbContext<BlogContext>(x => x.UseSqlServer(connection, b=> b.MigrationsAssembly("BlogProject.API")));
             //created for dependency injection
+            services.AddScoped<IRepository<User>, Repository<User>>();
+            services.AddScoped(typeof(UserManager));
             services.AddScoped(typeof(BlogContext));
             services.AddScoped<IRepository<User>, Repository<User>>();
             services.AddScoped(typeof(UserManager));
