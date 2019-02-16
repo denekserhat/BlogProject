@@ -22,5 +22,12 @@ namespace BlogProject.API.Controllers
             var returnValue = await userManager.GetUser(id);
             return Ok(returnValue);
         }
+
+        [HttpGet("getusers")]
+        public async Task<IActionResult> GetUsers()
+        {
+            var returnValue = await userManager.GetUsers();
+            return Ok(returnValue);
+        }
     }
 }

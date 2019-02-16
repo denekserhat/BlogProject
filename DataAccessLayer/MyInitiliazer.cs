@@ -39,6 +39,28 @@ namespace DataAccessLayer
 
             };
 
+            for (int i = 0; i < 10; i++)
+            {
+                   User user1 = new User
+            {
+                FirstName = "user",
+                LastName = "userlastname",
+                UserName = "username" + i,
+                Email = "fatih@gmail.com",
+                ActivatedGuid = Guid.NewGuid(),
+                IsActive = true,
+                IsAdmin = true,
+                Photourl = "StandartUser.png",
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt,
+                OnCreated = DateTime.Now,
+                OnModified = DateTime.Now.AddHours(1),
+                ModifiedUsername = "fatiharslan"
+
+            };
+            context.Users.Add(user1);
+            }
+
             context.Users.Add(user);
             context.SaveChanges();
         }
