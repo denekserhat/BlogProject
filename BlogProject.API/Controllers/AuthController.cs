@@ -34,8 +34,7 @@ namespace BlogProject.API.Controllers
            await userManager.Register(userModel);
 
         return StatusCode(201);
-
-
+        
         }
 
 

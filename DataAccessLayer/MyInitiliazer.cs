@@ -61,6 +61,80 @@ namespace DataAccessLayer
             context.Users.Add(user1);
             }
 
+            for (int i = 0; i < 10; i++)
+            {
+                Category cat = new Category
+                {
+                    Name = "user",   
+                    Description = "description",               
+                    OnModified = DateTime.Now.AddHours(1),
+                    OnModifiedUsername = "fatiharslan",
+                    PhotoUrl = "urltest"
+
+                };
+
+                context.Categories.Add(cat);
+
+                for (int j = 0; j < 10; j++)
+                {
+                    Note note = new Note
+                    {
+                        Title = "testtitle",
+                        Text = "testtext",
+                        LikeCount = 4,
+                        OnCreated = DateTime.Now,
+                        OnModified = DateTime.Now.AddHours(1),
+                        OnModifiedUsername = "fatiharslan",
+                        User = user,
+                        Category = cat
+                                          
+                    };
+                    context.Notes.Add(note);
+
+                    for (int k = 0; k < 10; k++)
+                    {
+                        Comment comment = new Comment
+                        {
+                            Text = "testtext",                   
+                            OnCreated = DateTime.Now,
+                            OnModified = DateTime.Now.AddHours(1),
+                            OnModifiedUsername = "fatiharslan",
+                            User = user,
+                            Note = note
+                        };
+                        context.Comments.Add(comment);
+
+                    }
+
+                    for (int l = 0; l < 10; l++)
+                    {
+                        Like like = new Like
+                        {
+                            OnCreated = DateTime.Now,
+                            OnModifiedUsername = "fatiharslan",
+                            User = user,
+                            Note = note
+                        };
+                        context.Likes.Add(like);
+
+                    }
+
+                    for (int l = 0; l < 10; l++)
+                    {
+                        Photo photo = new Photo
+                        {
+                            OnCreated = DateTime.Now,
+                            OnModifiedUsername = "fatiharslan",                      
+                            Note = note
+                        };
+                        context.Photos.Add(photo);
+
+                    }
+
+                }
+             
+            }
+
             context.Users.Add(user);
             context.SaveChanges();
         }
