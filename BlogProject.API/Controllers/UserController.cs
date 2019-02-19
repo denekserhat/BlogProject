@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using BusinessLayer;
+using Entities.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,16 +16,21 @@ namespace BlogProject.API.Controllers
     public class UserController : ControllerBase
     {
         private readonly UserManager userManager;
-        public UserController(UserManager _userManager)
+        private readonly IMapper mapper;
+        public UserController(UserManager _userManager, IMapper _mapper)
         {
             userManager = _userManager;
+            mapper = _mapper;
         }
 
         [HttpGet("getuser/{id}")]
         public async Task<IActionResult> GetUser(int id)
         {
-            var returnValue = await userManager.GetUser(id);
-            return Ok(returnValue);
+            var user = await userManager.GetUser(id);
+
+            var userToReturn = mapper.Map<UserDetailModel>(user);
+
+            return Ok(userToReturn);
         }
 
         [HttpGet("getusers")]

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using BusinessLayer;
 using DataAccessLayer;
 using Entities;
@@ -46,6 +47,8 @@ namespace BlogProject.API
             services.AddScoped<IRepository<User>, Repository<User>>();
             services.AddScoped(typeof(UserManager));
             services.AddScoped(typeof(BlogContext));
+            //added automapper
+            services.AddAutoMapper();
             services.AddTransient<MyInitiliazer>();
           
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
