@@ -32,18 +32,24 @@ namespace BlogProject.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+              services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                 .AddJsonOptions(option => {
+                     option.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                 });
+
+           
             string connection = @"Server=DESKTOP-LDVGTNI\SQLEXPRESS;Database=BlogProject;Trusted_Connection=True;MultipleActiveResultSets=true";
             //db connection
             services.AddDbContext<BlogContext>(x => x.UseSqlServer(connection, b=> b.MigrationsAssembly("BlogProject.API")));
+           
             //created for dependency injection
             services.AddScoped<IRepository<User>, Repository<User>>();
             services.AddScoped(typeof(UserManager));
             services.AddScoped(typeof(BlogContext));
             services.AddTransient<MyInitiliazer>();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
+          
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-          .AddJwtBearer(options => {
+            .AddJwtBearer(options => {
               options.TokenValidationParameters = new TokenValidationParameters
               {
                   ValidateIssuerSigningKey = true,
@@ -53,6 +59,7 @@ namespace BlogProject.API
                   ValidateAudience = false
               };
           });
+           services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,8 +74,11 @@ namespace BlogProject.API
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-           // seeder.Seed();
-            app.UseHttpsRedirection();
+            // seeder.Seed();
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            //app.UseHttpsRedirection();
+            //useauthentication methodu sayesinde
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
