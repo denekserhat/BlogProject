@@ -3006,11 +3006,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Serhat\\Desktop\\realrepository\\BlogProject\\BusinessLayer\\BusinessLayer.csproj",
+      "projectUniqueName": "C:\\Users\\Serhat\\Desktop\\Yeni klasör (2)\\BlogProject\\BusinessLayer\\BusinessLayer.csproj",
       "projectName": "BusinessLayer",
-      "projectPath": "C:\\Users\\Serhat\\Desktop\\realrepository\\BlogProject\\BusinessLayer\\BusinessLayer.csproj",
+      "projectPath": "C:\\Users\\Serhat\\Desktop\\Yeni klasör (2)\\BlogProject\\BusinessLayer\\BusinessLayer.csproj",
       "packagesPath": "C:\\Users\\Serhat\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Serhat\\Desktop\\realrepository\\BlogProject\\BusinessLayer\\obj\\",
+      "outputPath": "C:\\Users\\Serhat\\Desktop\\Yeni klasör (2)\\BlogProject\\BusinessLayer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -3029,8 +3029,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Users\\Serhat\\Desktop\\realrepository\\BlogProject\\DataAccessLayer\\DataAccessLayer.csproj": {
-              "projectPath": "C:\\Users\\Serhat\\Desktop\\realrepository\\BlogProject\\DataAccessLayer\\DataAccessLayer.csproj"
+            "C:\\Users\\Serhat\\Desktop\\Yeni klasör (2)\\BlogProject\\DataAccessLayer\\DataAccessLayer.csproj": {
+              "projectPath": "C:\\Users\\Serhat\\Desktop\\Yeni klasör (2)\\BlogProject\\DataAccessLayer\\DataAccessLayer.csproj"
             }
           }
         }

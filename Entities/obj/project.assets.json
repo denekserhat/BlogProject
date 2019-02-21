@@ -692,11 +692,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Serhat\\Desktop\\realrepository\\BlogProject\\Entities\\Entities.csproj",
+      "projectUniqueName": "C:\\Users\\Serhat\\Desktop\\Yeni klasör (2)\\BlogProject\\Entities\\Entities.csproj",
       "projectName": "Entities",
-      "projectPath": "C:\\Users\\Serhat\\Desktop\\realrepository\\BlogProject\\Entities\\Entities.csproj",
+      "projectPath": "C:\\Users\\Serhat\\Desktop\\Yeni klasör (2)\\BlogProject\\Entities\\Entities.csproj",
       "packagesPath": "C:\\Users\\Serhat\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Serhat\\Desktop\\realrepository\\BlogProject\\Entities\\obj\\",
+      "outputPath": "C:\\Users\\Serhat\\Desktop\\Yeni klasör (2)\\BlogProject\\Entities\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
