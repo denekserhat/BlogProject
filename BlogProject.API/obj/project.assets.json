@@ -13059,11 +13059,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Serhat\\Desktop\\realrepository\\BlogProject\\BlogProject.API\\BlogProject.API.csproj",
+      "projectUniqueName": "C:\\Users\\Serhat\\Desktop\\Yeni klasör (2)\\BlogProject\\BlogProject.API\\BlogProject.API.csproj",
       "projectName": "BlogProject.API",
-      "projectPath": "C:\\Users\\Serhat\\Desktop\\realrepository\\BlogProject\\BlogProject.API\\BlogProject.API.csproj",
+      "projectPath": "C:\\Users\\Serhat\\Desktop\\Yeni klasör (2)\\BlogProject\\BlogProject.API\\BlogProject.API.csproj",
       "packagesPath": "C:\\Users\\Serhat\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Serhat\\Desktop\\realrepository\\BlogProject\\BlogProject.API\\obj\\",
+      "outputPath": "C:\\Users\\Serhat\\Desktop\\Yeni klasör (2)\\BlogProject\\BlogProject.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -13082,11 +13082,11 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Users\\Serhat\\Desktop\\realrepository\\BlogProject\\BusinessLayer\\BusinessLayer.csproj": {
-              "projectPath": "C:\\Users\\Serhat\\Desktop\\realrepository\\BlogProject\\BusinessLayer\\BusinessLayer.csproj"
+            "C:\\Users\\Serhat\\Desktop\\Yeni klasör (2)\\BlogProject\\BusinessLayer\\BusinessLayer.csproj": {
+              "projectPath": "C:\\Users\\Serhat\\Desktop\\Yeni klasör (2)\\BlogProject\\BusinessLayer\\BusinessLayer.csproj"
             },
-            "C:\\Users\\Serhat\\Desktop\\realrepository\\BlogProject\\DataAccessLayer\\DataAccessLayer.csproj": {
-              "projectPath": "C:\\Users\\Serhat\\Desktop\\realrepository\\BlogProject\\DataAccessLayer\\DataAccessLayer.csproj"
+            "C:\\Users\\Serhat\\Desktop\\Yeni klasör (2)\\BlogProject\\DataAccessLayer\\DataAccessLayer.csproj": {
+              "projectPath": "C:\\Users\\Serhat\\Desktop\\Yeni klasör (2)\\BlogProject\\DataAccessLayer\\DataAccessLayer.csproj"
             }
           }
         }

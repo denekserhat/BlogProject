@@ -2988,11 +2988,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Serhat\\Desktop\\realrepository\\BlogProject\\DataAccessLayer\\DataAccessLayer.csproj",
+      "projectUniqueName": "C:\\Users\\Serhat\\Desktop\\Yeni klasör (2)\\BlogProject\\DataAccessLayer\\DataAccessLayer.csproj",
       "projectName": "DataAccessLayer",
-      "projectPath": "C:\\Users\\Serhat\\Desktop\\realrepository\\BlogProject\\DataAccessLayer\\DataAccessLayer.csproj",
+      "projectPath": "C:\\Users\\Serhat\\Desktop\\Yeni klasör (2)\\BlogProject\\DataAccessLayer\\DataAccessLayer.csproj",
       "packagesPath": "C:\\Users\\Serhat\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Serhat\\Desktop\\realrepository\\BlogProject\\DataAccessLayer\\obj\\",
+      "outputPath": "C:\\Users\\Serhat\\Desktop\\Yeni klasör (2)\\BlogProject\\DataAccessLayer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -3011,8 +3011,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Users\\Serhat\\Desktop\\realrepository\\BlogProject\\Entities\\Entities.csproj": {
-              "projectPath": "C:\\Users\\Serhat\\Desktop\\realrepository\\BlogProject\\Entities\\Entities.csproj"
+            "C:\\Users\\Serhat\\Desktop\\Yeni klasör (2)\\BlogProject\\Entities\\Entities.csproj": {
+              "projectPath": "C:\\Users\\Serhat\\Desktop\\Yeni klasör (2)\\BlogProject\\Entities\\Entities.csproj"
             }
           }
         }
