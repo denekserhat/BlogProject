@@ -477,7 +477,7 @@
       ]
     },
     "Microsoft.NETCore.DotNetAppHost/2.2.0": {
-      "sha512": "OK/H8p9Ig6mLMITjXJ4VOewrJg/TU+dAPHE4BdMWMv+8COzBehf7XF1+DofKkmqdHpO2cJoS5Sc9PEZ6PKCbsg==",
+      "sha512": "qIrVLupwT2NYTrf7KM7Nh+mJr36V5MITVRjyGOByVVCwGmQgQmI/6bjZYQv+QdExi4Cm87eCKJX9FdT6nc00Xg==",
       "type": "package",
       "path": "microsoft.netcore.dotnetapphost/2.2.0",
       "files": [
@@ -686,23 +686,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\fatihfurkan.DESKTOP-LDVGTNI\\.nuget\\packages\\": {},
+    "C:\\Users\\Serhat\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fatihfurkan.DESKTOP-LDVGTNI\\Desktop\\Github\\BlogProject\\MyBranch\\BlogProject\\Entities\\Entities.csproj",
+      "projectUniqueName": "C:\\Users\\Serhat\\Desktop\\Yeni klasör (2)\\BlogProject\\Entities\\Entities.csproj",
       "projectName": "Entities",
-      "projectPath": "C:\\Users\\fatihfurkan.DESKTOP-LDVGTNI\\Desktop\\Github\\BlogProject\\MyBranch\\BlogProject\\Entities\\Entities.csproj",
-      "packagesPath": "C:\\Users\\fatihfurkan.DESKTOP-LDVGTNI\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fatihfurkan.DESKTOP-LDVGTNI\\Desktop\\Github\\BlogProject\\MyBranch\\BlogProject\\Entities\\obj\\",
+      "projectPath": "C:\\Users\\Serhat\\Desktop\\Yeni klasör (2)\\BlogProject\\Entities\\Entities.csproj",
+      "packagesPath": "C:\\Users\\Serhat\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Serhat\\Desktop\\Yeni klasör (2)\\BlogProject\\Entities\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\fatihfurkan.DESKTOP-LDVGTNI\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Serhat\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
