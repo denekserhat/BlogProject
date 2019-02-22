@@ -36,21 +36,21 @@ namespace DataAccessLayer
             return await dbSetObject.Include(filter).ToListAsync();
         }
 
-        public int Insert(T entity)
+        public async Task<int> Insert(T entity)
         {
-            dbSetObject.Add(entity);
-            return blogContext.SaveChanges();
+             dbSetObject.Add(entity);
+             return await blogContext.SaveChangesAsync();
         }
 
-        public int Remove(T entity)
+        public async Task<int> Remove(T entity)
         {
             dbSetObject.Remove(entity);
-            return blogContext.SaveChanges();
+            return await blogContext.SaveChangesAsync();
         }
 
-        public int Update(T entity)
+        public async Task<int> Update(T entity)
         {
-            return blogContext.SaveChanges();
+            return await blogContext.SaveChangesAsync();
         }
     }
 }

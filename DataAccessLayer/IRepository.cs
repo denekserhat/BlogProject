@@ -14,10 +14,10 @@ namespace DataAccessLayer
 
         Task<List<T>> GetListAsync();
 
-        int Insert(T entity);
+        Task<int> Insert(T entity);
 
-        int Remove(T entity);
+        Task<int> Remove(T entity);
 
-        int Update(T entity);
+        Task<int> Update(T entity);
     }
 }

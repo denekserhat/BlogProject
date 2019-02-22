@@ -49,14 +49,14 @@ namespace BusinessLayer
 
             CreatePasswordHash(registerModel.password, out passwordHash, out passwordSalt);
 
-            int check =  userRepository.Insert(new User{
+            var check = userRepository.Insert(new User{
                 UserName = registerModel.username,
                 Email = registerModel.email,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt
             });
 
-            if(check>0){
+            if(check.Result > 0){
                 User user = await userRepository.GetAsync(x=> x.UserName == registerModel.username);
                 return user;
             }

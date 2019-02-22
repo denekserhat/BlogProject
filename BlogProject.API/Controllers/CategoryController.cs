@@ -23,7 +23,7 @@ namespace BlogProject.API.Controllers
             mapper = _mapper;
         }
 
-        [HttpGet("api/GetCategory/{id}")]
+        [HttpGet("getcategory/{id}")]
         public async Task<IActionResult> GetCategory(int id)
         {
             var category = await categoryManager.GetCategories(id);
