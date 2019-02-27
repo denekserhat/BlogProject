@@ -48,6 +48,7 @@ namespace BlogProject.API
             //created for dependency injection
             services.AddScoped<IRepository<User>, Repository<User>>();
             services.AddScoped<IRepository<Category>, Repository<Category>>();
+            services.AddScoped<IRepository<Note>, Repository<Note>>();
 
             services.AddScoped(typeof(UserManager));
             services.AddScoped(typeof(CategoryManager));

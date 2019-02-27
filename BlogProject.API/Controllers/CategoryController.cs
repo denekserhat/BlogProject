@@ -36,7 +36,7 @@ namespace BlogProject.API.Controllers
         }
 
         [HttpGet("getcategories")]
-        public async Task<IActionResult> GetCategories(int id)
+        public async Task<IActionResult> GetCategories()
         {
             var categories = await categoryManager.GetCategories();
 
@@ -71,7 +71,7 @@ namespace BlogProject.API.Controllers
  
             Category category = await categoryManager.GetCategory(categoryModel.Id);
             
-            await categoryManager.Delete(category);
+            await categoryManager.Update(category);
 
             return StatusCode(201);
         }
