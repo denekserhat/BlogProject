@@ -27,6 +27,7 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "6.0.0",
           "BusinessLayer": "1.0.0",
           "DataAccessLayer": "1.0.0",
+          "Helper": "1.0.0",
           "Microsoft.AspNetCore.App": "2.2.0",
           "Microsoft.AspNetCore.Razor.Design": "2.2.0",
           "Microsoft.NETCore.App": "2.2.0",
@@ -658,6 +659,18 @@
         },
         "compile": {
           "Entities.dll": {}
+        }
+      },
+      "Helper/1.0.0": {
+        "dependencies": {
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "6.0.0",
+          "Entities": "1.0.0"
+        },
+        "runtime": {
+          "Helper.dll": {}
+        },
+        "compile": {
+          "Helper.dll": {}
         }
       },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
@@ -3862,6 +3875,11 @@
       "sha512": ""
     },
     "Entities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Helper/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

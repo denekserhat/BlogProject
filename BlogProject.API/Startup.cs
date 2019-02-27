@@ -19,6 +19,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
+
+
 namespace BlogProject.API
 {
     public class Startup
@@ -45,6 +47,7 @@ namespace BlogProject.API
            
             //created for dependency injection
             services.AddScoped<IRepository<User>, Repository<User>>();
+            services.AddScoped<IRepository<Category>, Repository<Category>>();
 
             services.AddScoped(typeof(UserManager));
             services.AddScoped(typeof(CategoryManager));
@@ -54,7 +57,10 @@ namespace BlogProject.API
             services.AddScoped(typeof(PhotoManager));
             services.AddScoped(typeof(BlogContext));
             //added automapper
+            services.AddMvc();
             services.AddAutoMapper();
+            //Mapper.Initialize(cfg => cfg.AddProfile<AutomapperHelper>());
+
             services.AddTransient<MyInitiliazer>();
           
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
