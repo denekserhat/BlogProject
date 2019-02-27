@@ -15,25 +15,30 @@ namespace BusinessLayer
             categoryRepository = _categoryRepository;
         }
 
-        public async Task<List<Category>> GetCategories(int id)
+         public async Task<List<Category>> GetCategories()
         {
             var returnValues = await categoryRepository.GetListAsync();
             return returnValues;
         }
-
-        public void Insert(Category category)
+        public async Task<Category> GetCategory(int id)
         {
-            categoryRepository.Insert(category);
+            var returnValue = await categoryRepository.GetAsync(x => x.Id == id);
+            return returnValue;
         }
 
-        public void Update(Category category)
+        public async Task<int> Insert(Category category)
         {
-            categoryRepository.Update(category);
+            return await categoryRepository.Insert(category);
         }
 
-        public void Delete(Category category)
+        public async Task<int> Update(Category category)
         {
-            categoryRepository.Remove(category);
+            return await categoryRepository.Update(category);
+        }
+
+        public async Task<int> Delete(Category category)
+        {
+            return await categoryRepository.Remove(category);
         }
 
     }

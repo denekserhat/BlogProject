@@ -4783,6 +4783,20 @@
         "runtime": {
           "bin/placeholder/Entities.dll": {}
         }
+      },
+      "Helper/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "dependencies": {
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "6.0.0",
+          "Entities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Helper.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Helper.dll": {}
+        }
       }
     }
   },
@@ -13039,6 +13053,11 @@
       "type": "project",
       "path": "../Entities/Entities.csproj",
       "msbuildProject": "../Entities/Entities.csproj"
+    },
+    "Helper/1.0.0": {
+      "type": "project",
+      "path": "../Helper/Helper.csproj",
+      "msbuildProject": "../Helper/Helper.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -13046,6 +13065,7 @@
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 6.0.0",
       "BusinessLayer >= 1.0.0",
       "DataAccessLayer >= 1.0.0",
+      "Helper >= 1.0.0",
       "Microsoft.AspNetCore.App >= 2.2.0",
       "Microsoft.AspNetCore.Razor.Design >= 2.2.0",
       "Microsoft.NETCore.App >= 2.2.0",
@@ -13059,11 +13079,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fatihfurkan.DESKTOP-LDVGTNI\\Desktop\\Github\\BlogProject\\MyBranch\\BlogProject\\BlogProject.API\\BlogProject.API.csproj",
+      "projectUniqueName": "C:\\Users\\fatihfurkan.DESKTOP-LDVGTNI\\Desktop\\Github\\BlogProject\\BlogProject.API\\BlogProject.API.csproj",
       "projectName": "BlogProject.API",
-      "projectPath": "C:\\Users\\fatihfurkan.DESKTOP-LDVGTNI\\Desktop\\Github\\BlogProject\\MyBranch\\BlogProject\\BlogProject.API\\BlogProject.API.csproj",
+      "projectPath": "C:\\Users\\fatihfurkan.DESKTOP-LDVGTNI\\Desktop\\Github\\BlogProject\\BlogProject.API\\BlogProject.API.csproj",
       "packagesPath": "C:\\Users\\fatihfurkan.DESKTOP-LDVGTNI\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fatihfurkan.DESKTOP-LDVGTNI\\Desktop\\Github\\BlogProject\\MyBranch\\BlogProject\\BlogProject.API\\obj\\",
+      "outputPath": "C:\\Users\\fatihfurkan.DESKTOP-LDVGTNI\\Desktop\\Github\\BlogProject\\BlogProject.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -13082,11 +13102,14 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Users\\fatihfurkan.DESKTOP-LDVGTNI\\Desktop\\Github\\BlogProject\\MyBranch\\BlogProject\\BusinessLayer\\BusinessLayer.csproj": {
-              "projectPath": "C:\\Users\\fatihfurkan.DESKTOP-LDVGTNI\\Desktop\\Github\\BlogProject\\MyBranch\\BlogProject\\BusinessLayer\\BusinessLayer.csproj"
+            "C:\\Users\\fatihfurkan.DESKTOP-LDVGTNI\\Desktop\\Github\\BlogProject\\BusinessLayer\\BusinessLayer.csproj": {
+              "projectPath": "C:\\Users\\fatihfurkan.DESKTOP-LDVGTNI\\Desktop\\Github\\BlogProject\\BusinessLayer\\BusinessLayer.csproj"
             },
-            "C:\\Users\\fatihfurkan.DESKTOP-LDVGTNI\\Desktop\\Github\\BlogProject\\MyBranch\\BlogProject\\DataAccessLayer\\DataAccessLayer.csproj": {
-              "projectPath": "C:\\Users\\fatihfurkan.DESKTOP-LDVGTNI\\Desktop\\Github\\BlogProject\\MyBranch\\BlogProject\\DataAccessLayer\\DataAccessLayer.csproj"
+            "C:\\Users\\fatihfurkan.DESKTOP-LDVGTNI\\Desktop\\Github\\BlogProject\\DataAccessLayer\\DataAccessLayer.csproj": {
+              "projectPath": "C:\\Users\\fatihfurkan.DESKTOP-LDVGTNI\\Desktop\\Github\\BlogProject\\DataAccessLayer\\DataAccessLayer.csproj"
+            },
+            "C:\\Users\\fatihfurkan.DESKTOP-LDVGTNI\\Desktop\\Github\\BlogProject\\Helper\\Helper.csproj": {
+              "projectPath": "C:\\Users\\fatihfurkan.DESKTOP-LDVGTNI\\Desktop\\Github\\BlogProject\\Helper\\Helper.csproj"
             }
           }
         }

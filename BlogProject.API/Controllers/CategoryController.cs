@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using BusinessLayer;
+using Entities;
 using Entities.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogProject.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : Controller
@@ -26,16 +28,54 @@ namespace BlogProject.API.Controllers
         [HttpGet("getcategory/{id}")]
         public async Task<IActionResult> GetCategory(int id)
         {
-            var category = await categoryManager.GetCategories(id);
+            var category = await categoryManager.GetCategory(id);
 
-            var categoryToReturn = mapper.Map<UserDetailModel>(category);
+           // var categoryToReturn = mapper.Map<UserDetailModel>(category);
 
-            return Ok(categoryToReturn);
+            return Ok(category);
         }
 
-        public IActionResult Index()
+        [HttpGet("getcategories")]
+        public async Task<IActionResult> GetCategories(int id)
         {
-            return View();
+            var categories = await categoryManager.GetCategories();
+
+           // var categoryToReturn = mapper.Map<UserDetailModel>(category);
+
+            return Ok(categories);
         }
+
+        [HttpPost("insert")]
+        public async Task<IActionResult> InsertCategory(CategoryInsertModel model)
+        {
+            var insertValue = mapper.Map<Category>(model);
+
+            await categoryManager.Insert(insertValue);
+
+            return StatusCode(201);
+        }
+
+        [HttpDelete("delete")]
+        public async Task<IActionResult> DeleteCategory(int id)
+        {
+ 
+            Category category = await categoryManager.GetCategory(id);
+            await categoryManager.Delete(category);
+
+            return StatusCode(201);
+        }
+
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateCategory(CategoryUpdateModel categoryModel)
+        {
+ 
+            Category category = await categoryManager.GetCategory(categoryModel.Id);
+            
+            await categoryManager.Delete(category);
+
+            return StatusCode(201);
+        }
+
+      
     }
 }
