@@ -14,6 +14,8 @@ namespace DataAccessLayer
 
         Task<List<T>> GetListAsync();
 
+        List<T> FindListAsync(Expression<Func<T, bool>> filter);
+
         Task<List<T>> IncludeAsync(Expression<Func<T, object>> includeFilter);
 
         Task<int> Insert(T entity);

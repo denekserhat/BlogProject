@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,9 +36,9 @@ namespace DataAccessLayer
             return await dbSetObject.Include(includeFilter).ToListAsync();
         }
         //for join tables
-        public async Task<List<T>> FindList(Expression<Func<T, bool>> filter)
+        public List<T> FindListAsync(Expression<Func<T, bool>> filter)
         {
-            return await dbSetObject.Include(filter).ToListAsync();
+            return dbSetObject.Where(filter).ToList();
         }
 
         public async Task<int> Insert(T entity)
@@ -56,5 +57,7 @@ namespace DataAccessLayer
         {
             return await blogContext.SaveChangesAsync();
         }
+
+     
     }
 }
