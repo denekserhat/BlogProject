@@ -49,6 +49,7 @@ namespace BlogProject.API
             services.AddScoped<IRepository<User>, Repository<User>>();
             services.AddScoped<IRepository<Category>, Repository<Category>>();
             services.AddScoped<IRepository<Note>, Repository<Note>>();
+            services.AddScoped<IRepository<Comment>, Repository<Comment>>();
 
             services.AddScoped(typeof(UserManager));
             services.AddScoped(typeof(CategoryManager));

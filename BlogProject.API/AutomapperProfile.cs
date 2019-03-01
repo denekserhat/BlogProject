@@ -16,6 +16,13 @@ namespace BlogProject.API
             CreateMap<CategoryInsertModel, Category>()
             .ForMember(x=> x.OnModified, opt => opt.MapFrom(src => DateTime.Now))
             .ForMember(x => x.OnModifiedUsername, opt => opt.MapFrom(src => "admin"));
+            CreateMap<NoteInsertModel, Note>()
+            .ForMember(x => x.OnModified, opt => opt.MapFrom(src => DateTime.Now))
+            .ForMember(x => x.OnModifiedUsername, opt => opt.MapFrom(src => "admin"));
+            CreateMap<CommentInsertModel, Comment>()
+            .ForMember(x => x.OnModified, opt => opt.MapFrom(src => DateTime.Now))
+            .ForMember(x => x.OnModifiedUsername, opt => opt.MapFrom(src => "admin"));
+
 
             //CreateMap<Category, CategoryInsertModel>();
         }
