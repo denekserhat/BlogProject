@@ -20,6 +20,12 @@ namespace BusinessLayer
             var returnValues = await categoryRepository.GetListAsync();
             return returnValues;
         }
+
+        public async Task<List<Category>> GetCategoriesWithNotes()
+        {
+            var returnValues = await categoryRepository.IncludeAsync(x => x.Notes);
+            return returnValues;
+        }
         public async Task<Category> GetCategory(int id)
         {
             var returnValue = await categoryRepository.GetAsync(x => x.Id == id);
