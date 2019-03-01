@@ -30,6 +30,10 @@ namespace DataAccessLayer
             return await dbSetObject.ToListAsync();
         }
 
+        public async Task<List<T>> IncludeAsync(Expression<Func<T, object>> includeFilter)
+        {
+            return await dbSetObject.Include(includeFilter).ToListAsync();
+        }
         //for join tables
         public async Task<List<T>> FindList(Expression<Func<T, bool>> filter)
         {
