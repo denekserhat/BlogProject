@@ -10,6 +10,7 @@ namespace DataAccessLayer
     public interface IRepository<T> 
         where T : class
     {
+        
         Task<T> GetAsync(Expression<Func<T, bool>> filter);
 
         Task<List<T>> GetListAsync();

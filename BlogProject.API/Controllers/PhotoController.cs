@@ -41,10 +41,10 @@ namespace BlogProject.API.Controllers
         }
 
         [HttpGet("getphoto/{userId}")]
-        public IActionResult GetPhoto(int userId)
+        public async Task<IActionResult> GetPhoto(int userId)
         {
 
-            var photo = photoManager.GetPhoto(userId);
+            var photo = await photoManager.GetPhoto(userId);
 
             // var categoryToReturn = mapper.Map<UserDetailModel>(category);
 
@@ -52,10 +52,10 @@ namespace BlogProject.API.Controllers
         }
 
         [HttpGet("getphotos")]
-        public IActionResult GetPhotos(int userId)
+        public async Task<IActionResult> GetPhotos()
         {
 
-            var photos = photoManager.GetPhotos(userId);
+            var photos = await photoManager.GetPhotos();
 
             // var categoryToReturn = mapper.Map<UserDetailModel>(category);
 

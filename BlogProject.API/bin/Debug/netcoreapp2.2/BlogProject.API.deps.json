@@ -667,7 +667,8 @@
       },
       "BusinessLayer/1.0.0": {
         "dependencies": {
-          "DataAccessLayer": "1.0.0"
+          "DataAccessLayer": "1.0.0",
+          "Helper": "1.0.0"
         },
         "runtime": {
           "BusinessLayer.dll": {}

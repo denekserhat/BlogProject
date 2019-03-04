@@ -19,13 +19,14 @@ namespace BlogProject.API.Controllers
     public class AuthController : Controller
     {
            private readonly UserManager userManager;
-           private readonly IConfiguration _config;
-
+         
+           private readonly IConfiguration _config;   
 
         public AuthController(UserManager manager, IConfiguration config)
         {
             userManager = manager;
             _config = config;
+           
         }
 
         [HttpPost("register")]

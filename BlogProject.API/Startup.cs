@@ -7,6 +7,7 @@ using AutoMapper;
 using BusinessLayer;
 using DataAccessLayer;
 using Entities;
+using Helper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -45,6 +46,7 @@ namespace BlogProject.API
             //db connection
             services.AddDbContext<BlogContext>(x => x.UseSqlServer(connection, b=> b.MigrationsAssembly("BlogProject.API")));
              services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
+             services.Configure<MailSettings>(Configuration.GetSection("MailHelperSettings"));
            
             //created for dependency injection
             services.AddScoped<IRepository<User>, Repository<User>>();
@@ -61,6 +63,8 @@ namespace BlogProject.API
             services.AddScoped(typeof(LikeManager));
             services.AddScoped(typeof(PhotoManager));
             services.AddScoped(typeof(BlogContext));
+
+            services.AddScoped(typeof(MailHelper));
             //added automapper
             services.AddMvc();
             services.AddAutoMapper();

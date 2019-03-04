@@ -5,16 +5,19 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Entities.Dtos;
+using Helper;
 
 namespace BusinessLayer
 {
     public class UserManager
     {
+        MailHelper mailHelper;
         IRepository<User> userRepository;
 
-        public UserManager(IRepository<User> _userRepository)
+        public UserManager(IRepository<User> _userRepository, MailHelper _mailHelper)
         {
             userRepository = _userRepository;
+            mailHelper = _mailHelper;
         }
 
         public async Task<User> GetUser(int id)
@@ -38,9 +41,7 @@ namespace BusinessLayer
                         return user;
                     }
                 }
-
-                return null;
-            
+                return null;   
         }
 
         public async Task<User> Register(UserRegisterModel registerModel)
@@ -57,7 +58,12 @@ namespace BusinessLayer
             });
 
             if(check.Result > 0){
-                User user = await userRepository.GetAsync(x=> x.UserName == registerModel.username);
+                User user = await userRepository.GetAsync(x=> x.Email == registerModel.email);
+
+                string body = $"Merhaba {user.UserName} <br><br> Hesabýnýzý" +
+                      $"aktifleþtirmek için <a target='_blank'>týklayýnýz</a>.";
+
+                mailHelper.SendMail(body, user.Email, "Hesap Aktifleþtirme");
                 return user;
             }
             return null;
@@ -84,9 +90,5 @@ namespace BusinessLayer
                 return true;
             }
         }
-
-
-
     }
 }
-

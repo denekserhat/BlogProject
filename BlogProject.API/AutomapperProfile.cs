@@ -13,6 +13,7 @@ namespace BlogProject.API
         public AutomapperProfile()
         {
             CreateMap<User, UserDetailModel>();
+            CreateMap<UserRegisterModel, User>();
             CreateMap<CategoryInsertModel, Category>()
             .ForMember(x=> x.OnModified, opt => opt.MapFrom(src => DateTime.Now))
             .ForMember(x => x.OnModifiedUsername, opt => opt.MapFrom(src => "admin"));

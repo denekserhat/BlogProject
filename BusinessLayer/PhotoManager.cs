@@ -23,9 +23,9 @@ namespace BusinessLayer
             return returnValue;
         }
 
-           public List<Photo> GetPhotos(int id)
+           public async Task<List<Photo>> GetPhotos()
         {
-            var returnValues = photoManager.FindListAsync(x => x.Id == id);
+            var returnValues = await photoManager.GetListAsync();
             return returnValues;
         }
 
