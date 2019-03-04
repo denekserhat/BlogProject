@@ -44,6 +44,7 @@ namespace BlogProject.API
             string connection = @"Server=DESKTOP-LDVGTNI\SQLEXPRESS;Database=BlogProject;Trusted_Connection=True;MultipleActiveResultSets=true";
             //db connection
             services.AddDbContext<BlogContext>(x => x.UseSqlServer(connection, b=> b.MigrationsAssembly("BlogProject.API")));
+             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
            
             //created for dependency injection
             services.AddScoped<IRepository<User>, Repository<User>>();
@@ -51,6 +52,7 @@ namespace BlogProject.API
             services.AddScoped<IRepository<Note>, Repository<Note>>();
             services.AddScoped<IRepository<Comment>, Repository<Comment>>();
             services.AddScoped<IRepository<Like>, Repository<Like>>();
+            services.AddScoped<IRepository<Photo>, Repository<Photo>>();
 
             services.AddScoped(typeof(UserManager));
             services.AddScoped(typeof(CategoryManager));

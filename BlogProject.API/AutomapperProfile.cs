@@ -22,7 +22,9 @@ namespace BlogProject.API
             CreateMap<CommentInsertModel, Comment>()
             .ForMember(x => x.OnModified, opt => opt.MapFrom(src => DateTime.Now))
             .ForMember(x => x.OnModifiedUsername, opt => opt.MapFrom(src => "admin"));
-
+               CreateMap<PhotoForCreationModel, Photo>();
+                    CreateMap<Photo, PhotoForCreationModel>()
+                    .ForMember(x => x.File, opt => opt.Ignore());
 
             //CreateMap<Category, CategoryInsertModel>();
         }
