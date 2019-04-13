@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Helper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,12 +32,24 @@ namespace DataAccessLayer
             return await dbSetObject.ToListAsync();
         }
 
+        public async Task<PagedList<T>> GetListAsyncForNote(NoteParams noteParams)
+        {
+            var list = await dbSetObject.ToListAsync();
+
+            var queryableList = list.AsQueryable();
+
+            PagedList<T> returnValues = PagedList<T>.CreateAsync(queryableList, noteParams.PageNumber, noteParams.PageSize);
+
+            //return await PagedList<T>.CreateAsync(queryableList, noteParams.PageNumber, noteParams.PageSize);
+            return returnValues;
+        }
+
         public async Task<List<T>> IncludeAsync(Expression<Func<T, object>> includeFilter)
         {
             return await dbSetObject.Include(includeFilter).ToListAsync();
         }
         //for join tables
-        public List<T> FindListAsync(Expression<Func<T, bool>> filter)
+        public List<T> FindList(Expression<Func<T, bool>> filter)
         {
             return dbSetObject.Where(filter).ToList();
         }
@@ -58,6 +71,17 @@ namespace DataAccessLayer
             return await blogContext.SaveChangesAsync();
         }
 
-     
+        public async Task<List<T>> FindList(Expression<Func<T, bool>> filter, params string[] includetables)
+        {
+            IQueryable<T> query = filter==null?dbSetObject:dbSetObject.Where(filter);
+
+            includetables.ToList().ForEach(tableName =>
+            {
+                query = query.Include(tableName);
+            });
+
+            return await query.ToListAsync();
+        }
+
     }
 }

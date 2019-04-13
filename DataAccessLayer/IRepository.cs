@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
@@ -15,7 +16,9 @@ namespace DataAccessLayer
 
         Task<List<T>> GetListAsync();
 
-        List<T> FindListAsync(Expression<Func<T, bool>> filter);
+        Task<PagedList<T>> GetListAsyncForNote(NoteParams noteParams);
+
+        List<T> FindList(Expression<Func<T, bool>> filter);
 
         Task<List<T>> IncludeAsync(Expression<Func<T, object>> includeFilter);
 
@@ -24,5 +27,7 @@ namespace DataAccessLayer
         Task<int> Remove(T entity);
 
         Task<int> Update(T entity);
+
+        Task<List<T>> FindList(Expression<Func<T, bool>> filter, params string[] includetables);
     }
 }

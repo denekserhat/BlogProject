@@ -4,14 +4,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using BusinessLayer;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using Entities;
 using Entities.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace BlogProject.API.Controllers
 {
-    [Authorize]
+
     [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : Controller
@@ -19,10 +22,23 @@ namespace BlogProject.API.Controllers
         private readonly CategoryManager categoryManager;
         private readonly IMapper mapper;
 
-        public CategoryController(CategoryManager _categoryManager, IMapper _mapper)
+        private readonly IOptions<CloudinarySettings> cloudinaryConfig;
+        private Cloudinary _cloudinary;
+
+        public CategoryController(CategoryManager _categoryManager, IMapper _mapper, IOptions<CloudinarySettings> _cloudinaryConfig)
         {
             categoryManager = _categoryManager;
             mapper = _mapper;
+
+            cloudinaryConfig = _cloudinaryConfig;
+
+            Account acc = new Account(
+             _cloudinaryConfig.Value.CloudName,
+             _cloudinaryConfig.Value.ApiKey,
+             _cloudinaryConfig.Value.ApiSecret
+         );
+
+            _cloudinary = new Cloudinary(acc);
         }
 
         [HttpGet("getcategory/{id}")]
@@ -46,8 +62,32 @@ namespace BlogProject.API.Controllers
         }
 
         [HttpPost("insert")]
-        public async Task<IActionResult> InsertCategory(CategoryInsertModel model)
+        public async Task<IActionResult> InsertCategory([FromForm]CategoryInsertModel model)
         {
+
+            var file = model.File;
+
+            var uploadResult = new ImageUploadResult();
+
+            if (file.Length > 0)
+            {
+                using (var stream = file.OpenReadStream())
+                {
+                    var uploadParams = new ImageUploadParams()
+                    {
+                        File = new FileDescription(file.Name, stream),
+                        Transformation = new Transformation()
+                            .Width(500).Height(500).Crop("fill").Gravity("face")
+                    };
+
+                    uploadResult = _cloudinary.Upload(uploadParams);
+                }
+            }
+
+            model.PhotoUrl = uploadResult.Uri.ToString();
+            model.PublicId = uploadResult.PublicId;
+
+
             var insertValue = mapper.Map<Category>(model);
 
             await categoryManager.Insert(insertValue);

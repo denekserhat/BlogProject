@@ -19,7 +19,7 @@ namespace BusinessLayer
         public List<int> GetLikes(int userId, int[] likeIds)
         {
 
-            List<int> likes = likeRepository.FindListAsync(x => x.User.Id == userId && likeIds.Contains(x.Note.Id)).Select(x => x.Note.Id).ToList();
+            List<int> likes = likeRepository.FindList(x => x.User.Id == userId && likeIds.Contains(x.Note.Id)).Select(x => x.Note.Id).ToList();
 
             return likes;
         }

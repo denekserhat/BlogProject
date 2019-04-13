@@ -4,7 +4,8 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccessLayer;
 using Entities;
-
+using System.Linq;
+using Helper;
 namespace BusinessLayer
 {
     public class NoteManager
@@ -15,11 +16,27 @@ namespace BusinessLayer
             noteRepository = _noteRepository;
         }
 
-         public async Task<List<Note>> GetNotes()
+         public async Task<PagedList<Note>> GetNotes(NoteParams noteParams)
         {
-            var returnValues = await noteRepository.GetListAsync();
+            var returnValues = await noteRepository.GetListAsyncForNote(noteParams);
+            //it should be queryable due to pagedlist 
+            // var notes = returnValues.Result.AsQueryable();
+            //return await PagedList<Note>.CreateAsync(notes, noteParams.PageNumber, noteParams.PageSize);
             return returnValues;
         }
+        public List<Note> GetPopsularNotes()
+        {
+            var returnValues = noteRepository.FindList(null, "Comments", "Likes", "Photos").Result;
+            return returnValues;
+        }
+
+        public List<Note> GetNotesByCategory(int id)
+        {
+            var returnValues = noteRepository.FindList(x => x.CategoryId == id);
+            return returnValues;
+        }
+
+
         public async Task<Note> GetNote(int id)
         {
             var returnValue = await noteRepository.GetAsync(x => x.Id == id);

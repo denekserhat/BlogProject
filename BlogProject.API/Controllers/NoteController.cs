@@ -6,12 +6,13 @@ using AutoMapper;
 using BusinessLayer;
 using Entities;
 using Entities.Dtos;
+using Helper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogProject.API.Controllers
 {
-    [Authorize]
+
     [Route("api/[controller]")]
     [ApiController]
     public class NoteController : Controller
@@ -25,22 +26,44 @@ namespace BlogProject.API.Controllers
             mapper = _mapper;
         }
 
-          [HttpGet("getnote/{id}")]
-        public async Task<IActionResult> GetNote(int id)
+          [HttpGet("getnotesbycategory/{id}")]
+        public IActionResult GetNoteByCategory(int id)
         {
-            var note = await noteManager.GetNote(id);
+            var notes = noteManager.GetNotesByCategory(id);
 
            // var categoryToReturn = mapper.Map<UserDetailModel>(category);
 
-            return Ok(note);
+            return Ok(notes);
         }
 
         [HttpGet("getnotes")]
-        public async Task<IActionResult> GetCategories()
+        public async Task<IActionResult> GetNotes([FromQuery]NoteParams noteParams)
         {
-            var categories = await noteManager.GetNotes();
+           var notes = await noteManager.GetNotes(noteParams);
+
+            Response.AddPagination(notes.CurrentPage, notes.PageSize, notes.TotalCount, notes.TotalPages);
 
            // var categoryToReturn = mapper.Map<UserDetailModel>(category);
+
+            return Ok(notes);
+        }
+
+        [HttpGet("getnote/{id}")]
+        public async Task<IActionResult> GetNote(int id)
+        {
+            var categories = await noteManager.GetNote(id);
+
+            // var categoryToReturn = mapper.Map<UserDetailModel>(category);
+
+            return Ok(categories);
+        }
+
+        [HttpGet("getpopularnotes")]
+        public IActionResult GetPopularNotes()
+        {
+            var categories = noteManager.GetPopsularNotes();
+
+            // var categoryToReturn = mapper.Map<UserDetailModel>(category);
 
             return Ok(categories);
         }
@@ -49,7 +72,7 @@ namespace BlogProject.API.Controllers
         public async Task<IActionResult> InsertNote(NoteInsertModel noteModel)
         {
             var insertValue = mapper.Map<Note>(noteModel);
-
+     
             await noteManager.Insert(insertValue);
 
             return StatusCode(201);

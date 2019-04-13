@@ -12,6 +12,7 @@ namespace Entities
         public DateTime OnModified { get; set; }
         public string OnModifiedUsername { get; set; }
         public string PhotoUrl { get; set; }
+        public string PublicId { get; set; }
 
 
         public IList<Note> Notes { get; set; }
