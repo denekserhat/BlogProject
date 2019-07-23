@@ -46,7 +46,7 @@ namespace BlogProject.API.Controllers
         {
             var category = await categoryManager.GetCategory(id);
 
-           // var categoryToReturn = mapper.Map<UserDetailModel>(category);
+            //var categoryToReturn = mapper.Map<CategoryUpdateModel>(category);
 
             return Ok(category);
         }
@@ -55,7 +55,7 @@ namespace BlogProject.API.Controllers
         public async Task<IActionResult> GetCategories()
         {
             var categories = await categoryManager.GetCategories();
-
+             
            // var categoryToReturn = mapper.Map<UserDetailModel>(category);
 
             return Ok(categories);
@@ -95,25 +95,55 @@ namespace BlogProject.API.Controllers
             return StatusCode(201);
         }
 
-        [HttpDelete("delete")]
+        [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
+            if (id < 0) BadRequest("Invalid category id");
  
             Category category = await categoryManager.GetCategory(id);
             await categoryManager.Delete(category);
 
-            return StatusCode(201);
+            return Ok();
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> UpdateCategory(CategoryUpdateModel categoryModel)
+        public async Task<IActionResult> UpdateCategory([FromForm]CategoryUpdateModel categoryModel)
         {
- 
-            Category category = await categoryManager.GetCategory(categoryModel.Id);
-            
-            await categoryManager.Update(category);
 
-            return StatusCode(201);
+            var file = categoryModel.File;
+
+            var uploadResult = new ImageUploadResult();
+
+            if (file.Length > 0)
+            {
+                using (var stream = file.OpenReadStream())
+                {
+                    var uploadParams = new ImageUploadParams()
+                    {
+                        File = new FileDescription(file.Name, stream),
+                        Transformation = new Transformation()
+                            .Width(500).Height(500).Crop("fill").Gravity("face")
+                    };
+
+                    uploadResult = _cloudinary.Upload(uploadParams);
+                }
+            }
+
+            categoryModel.PhotoUrl = uploadResult.Uri.ToString();
+
+            if (categoryModel != null)
+            {
+                Category category = await categoryManager.GetCategory(categoryModel.Id);
+
+                category.Name = categoryModel.Name;
+                category.Description = categoryModel.Description;
+                category.PhotoUrl = categoryModel.PhotoUrl;
+
+                await categoryManager.Update(category);
+
+            }
+
+            return Ok();
         }
 
       

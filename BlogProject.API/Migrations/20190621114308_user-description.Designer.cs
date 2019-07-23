@@ -4,14 +4,16 @@ using DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BlogProject.API.Migrations
 {
     [DbContext(typeof(BlogContext))]
-    partial class BlogContextModelSnapshot : ModelSnapshot
+    [Migration("20190621114308_user-description")]
+    partial class userdescription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -152,27 +154,6 @@ namespace BlogProject.API.Migrations
                     b.ToTable("Photos");
                 });
 
-            modelBuilder.Entity("Entities.Tag", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("NoteId");
-
-                    b.Property<DateTime>("OnCreated");
-
-                    b.Property<string>("OnModifiedUsername");
-
-                    b.Property<string>("Tags");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NoteId");
-
-                    b.ToTable("Tags");
-                });
-
             modelBuilder.Entity("Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -249,13 +230,6 @@ namespace BlogProject.API.Migrations
                 {
                     b.HasOne("Entities.Note", "Note")
                         .WithMany("Photos")
-                        .HasForeignKey("NoteId");
-                });
-
-            modelBuilder.Entity("Entities.Tag", b =>
-                {
-                    b.HasOne("Entities.Note", "Note")
-                        .WithMany()
                         .HasForeignKey("NoteId");
                 });
 #pragma warning restore 612, 618

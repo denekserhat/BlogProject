@@ -11,6 +11,7 @@ namespace Entities.Dtos
         public DateTime OnModified { get; set; }
         public string OnModifiedUsername { get; set; }
         public string PublicId { get; set; }
+        public int NoteId { get; set; }
 
         public PhotoForCreationModel()
         {

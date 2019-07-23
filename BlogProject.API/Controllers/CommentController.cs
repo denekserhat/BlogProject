@@ -10,8 +10,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogProject.API.Controllers
-{
-    [Authorize]
+{ 
+
     [Route("api/[controller]")]
     [ApiController]
     public class CommentController : Controller
@@ -28,23 +28,24 @@ namespace BlogProject.API.Controllers
         [HttpGet("getcomment/{id}")]
         public async Task<IActionResult> GetComment(int id)
         {
-            var note = await commentManager.GetComment(id);
+            var comment = await commentManager.GetComment(id);
 
             // var categoryToReturn = mapper.Map<UserDetailModel>(category);
 
-            return Ok(note);
+            return Ok(comment);
         }
 
         [HttpGet("getcomments")]
-        public async Task<IActionResult> GetCategories()
+        public async Task<IActionResult> GetComments()
         {
-            var categories = await commentManager.GetComments();
+            var comments = await commentManager.GetComments();
 
             // var categoryToReturn = mapper.Map<UserDetailModel>(category);
 
-            return Ok(categories);
+            return Ok(comments);
         }
 
+        //[Authorize]
         [HttpPost("insert")]
         public async Task<IActionResult> InsertNote(CommentInsertModel commentModel)
         {
@@ -55,8 +56,8 @@ namespace BlogProject.API.Controllers
             return StatusCode(201);
         }
 
-        [HttpDelete("delete")]
-        public async Task<IActionResult> DeleteNote(int id)
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteComment(int id)
         {
 
             Comment comment = await commentManager.GetComment(id);
@@ -66,12 +67,12 @@ namespace BlogProject.API.Controllers
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> UpdateNote(CommentUpdateModel commentModel)
+        public async Task<IActionResult> DeleteComment(CommentUpdateModel commentModel)
         {
 
             Comment comment = await commentManager.GetComment(commentModel.Id);
 
-            await commentManager.Update(comment);
+            await commentManager.Delete(comment);
 
             return StatusCode(201);
         }

@@ -27,6 +27,18 @@ namespace DataAccessLayer
             return await dbSetObject.FirstOrDefaultAsync(filter);
         }
 
+        public async Task<T> GetIncludeAsync(Expression<Func<T, bool>> filter, params string[] includetables)
+        {
+            IQueryable<T> query = filter == null ? dbSetObject : dbSetObject.Where(filter);
+
+            includetables.ToList().ForEach(tableName =>
+            {
+                query = query.Include(tableName);
+            });
+
+            return await query.FirstOrDefaultAsync();
+        }
+
         public async Task<List<T>> GetListAsync()
         {
             return await dbSetObject.ToListAsync();
@@ -44,9 +56,41 @@ namespace DataAccessLayer
             return returnValues;
         }
 
+        public async Task<PagedList<T>> IncludeAsyncForNote(NoteParams noteParams, Expression<Func<T, object>> includeFilter)
+        {
+            var list = await dbSetObject.Include(includeFilter).ToListAsync();
+
+            var queryableList = list.AsQueryable();
+
+            PagedList<T> returnValues = PagedList<T>.CreateAsync(queryableList, noteParams.PageNumber, noteParams.PageSize);
+
+            //return await PagedList<T>.CreateAsync(queryableList, noteParams.PageNumber, noteParams.PageSize);
+            return returnValues;
+        }
+
+        public async Task<PagedList<T>> IncludeAsyncForNoteByDescending(NoteParams noteParams, Expression<Func<T, object>> includeFilter, Expression<Func<T, object>> descendingFilter)
+        {
+            var list = await dbSetObject.Include(includeFilter).OrderByDescending(descendingFilter).ToListAsync();
+
+            var queryableList = list.AsQueryable();
+
+            PagedList<T> returnValues = PagedList<T>.CreateAsync(queryableList, noteParams.PageNumber, noteParams.PageSize);
+
+            //return await PagedList<T>.CreateAsync(queryableList, noteParams.PageNumber, noteParams.PageSize);
+            return returnValues;
+        }
+
         public async Task<List<T>> IncludeAsync(Expression<Func<T, object>> includeFilter)
         {
-            return await dbSetObject.Include(includeFilter).ToListAsync();
+            //var list = await dbSetObject.Include(includeFilter).ToListAsync();
+
+            //var queryableList = list.AsQueryable();
+
+            //PagedList<T> returnValues = PagedList<T>.CreateAsync(queryableList, noteParams.PageNumber, noteParams.PageSize);
+
+            ////return await PagedList<T>.CreateAsync(queryableList, noteParams.PageNumber, noteParams.PageSize);
+            //return returnValues;
+             return await dbSetObject.Include(includeFilter).ToListAsync();
         }
         //for join tables
         public List<T> FindList(Expression<Func<T, bool>> filter)
@@ -83,5 +127,16 @@ namespace DataAccessLayer
             return await query.ToListAsync();
         }
 
+        public async Task<List<T>> FindPopularNotes(Expression<Func<T, bool>> filter, params string[] includetables)
+        {
+            IQueryable<T> query = filter == null ? dbSetObject : dbSetObject.Where(filter);
+
+            includetables.ToList().ForEach(tableName =>
+            {
+                query = query.Include(tableName);
+            });
+
+            return await query.Take(5).ToListAsync();
+        }
     }
 }

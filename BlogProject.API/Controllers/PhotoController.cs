@@ -18,13 +18,12 @@ namespace BlogProject.API.Controllers
     public class PhotoController : Controller
     {
          private readonly PhotoManager photoManager;
-          private readonly PhotoManager userManager;
         private readonly IMapper mapper;
         private readonly IOptions<CloudinarySettings> cloudinaryConfig;
         private Cloudinary _cloudinary;
 
 
-        public PhotoController(PhotoManager _photoManager, IMapper _mapper, UserManager _userManager, IOptions<CloudinarySettings> _cloudinaryConfig)
+        public PhotoController(PhotoManager _photoManager, IMapper _mapper, IOptions<CloudinarySettings> _cloudinaryConfig)
         {
             photoManager = _photoManager;
            // userManager = _userManager;
@@ -63,7 +62,7 @@ namespace BlogProject.API.Controllers
         }
 
         [HttpPost("insert")]
-        public async Task<IActionResult> AddPhotoForUser([FromForm]PhotoForCreationModel photoForCreationModel)
+        public ActionResult AddPhotoForUser([FromForm]PhotoForCreationModel photoForCreationModel)
         {     
 
             var file = photoForCreationModel.File;
@@ -90,19 +89,18 @@ namespace BlogProject.API.Controllers
             
 
             var photo = mapper.Map<Photo>(photoForCreationModel);
-
-            await photoManager.Insert(photo);
+            photoManager.Insert(photo);
 
            
-            var photoToReturn = mapper.Map<PhotoForCreationModel>(photo);
+            // var photoToReturn = mapper.Map<PhotoForCreationModel>(photo);
             //return CreatedAtRoute("GetPhoto", new { id = photo.Id }, photoToReturn);
             
-            return Ok(photoToReturn);
+            return Ok(photoForCreationModel.PhotoUrl);
             //return BadRequest("Could not add the photo");
         }
 
         [HttpPost("insertphotonote")]
-        public async Task<IActionResult> AddPhotoForNote([FromForm]PhotoForCreationModel photoForCreationModel)
+        public ActionResult AddPhotoForNote([FromForm]PhotoForCreationModel photoForCreationModel)
         {
 
             var file = photoForCreationModel.File;
@@ -130,7 +128,7 @@ namespace BlogProject.API.Controllers
 
             var photo = mapper.Map<Photo>(photoForCreationModel);
 
-            await photoManager.Insert(photo);
+            photoManager.Insert(photo);
 
 
             // var photoToReturn = mapper.Map<PhotoForCreationModel>(photo);
@@ -139,6 +137,7 @@ namespace BlogProject.API.Controllers
             return Ok(photoForCreationModel.PhotoUrl);
             //return BadRequest("Could not add the photo");
         }
+
 
 
 

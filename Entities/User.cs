@@ -14,6 +14,7 @@ namespace Entities
         public byte[] PasswordSalt { get; set; }
         public string Email { get; set; }
         public bool IsActive { get; set; }
+        public string Description { get; set; }
 
         //should be guid type
         public Guid ActivatedGuid { get; set; }

@@ -14,6 +14,15 @@ namespace DataAccessLayer
 
         }
 
+       // protected override void OnModelCreating(ModelBuilder modelBuilder)
+       // {
+       //     modelBuilder.Entity<Note>()
+       //.HasOne(b => b.Category)
+       //.WithMany(a => a.Notes)
+       //.IsRequired()
+       //.OnDelete(DeleteBehavior.SetNull);
+       // }
+
         //generetes dbsets which are instances of tables of db
         public DbSet<User> Users { get; set; }
         public DbSet<Photo> Photos { get; set; }
@@ -21,6 +30,7 @@ namespace DataAccessLayer
         public DbSet<Like> Likes { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Category> Categories { get; set; }
-        
+        public DbSet<Tag> Tags { get; set; }
+
     }
 }

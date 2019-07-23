@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using BusinessLayer;
 using Entities;
 using Entities.Dtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -30,12 +31,22 @@ namespace BlogProject.API.Controllers
         }
 
         [HttpPost("register")]
-         public async Task<IActionResult> Register(UserRegisterModel userModel){
+         public async Task<ActionResult> Register(UserRegisterModel userModel){
 
-           await userManager.Register(userModel);
+         await userManager.Register(userModel);
 
-        return StatusCode(201);
+            return StatusCode(201);
         
+        }
+        
+        [Authorize]
+        [HttpGet("activateuser/{id}")]
+        public async Task<ActionResult> Activate(Guid id)
+        {
+
+            await userManager.ActivateUser(id);
+            return StatusCode(201);
+
         }
 
 

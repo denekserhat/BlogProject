@@ -25,7 +25,12 @@ namespace BusinessLayer
             return await userRepository.GetAsync(x => x.Id == id);
         }
 
-         public async Task<List<User>> GetUsers()
+        public async Task<int> Update(User user)
+        {
+            return await userRepository.Update(user);
+        }
+
+        public async Task<List<User>> GetUsers()
         {
             return await userRepository.GetListAsync();
         }
@@ -50,18 +55,21 @@ namespace BusinessLayer
 
             CreatePasswordHash(registerModel.password, out passwordHash, out passwordSalt);
 
-            var check = userRepository.Insert(new User{
+            var check = userRepository.Insert(new User {
                 UserName = registerModel.username,
                 Email = registerModel.email,
+                ActivatedGuid = Guid.NewGuid(),
                 PasswordHash = passwordHash,
-                PasswordSalt = passwordSalt
+                PasswordSalt = passwordSalt,
+                Photourl = "http://www.iconninja.com/files/1024/108/58/users-human-avatar-people-male-account-person-user-man-profile-icon.png"
             });
 
             if(check.Result > 0){
-                User user = await userRepository.GetAsync(x=> x.Email == registerModel.email);
+                User user = await userRepository.GetAsync(x=> x.UserName == registerModel.username);
 
-                string body = $"Merhaba {user.UserName} <br><br> Hesabýnýzý" +
-                      $"aktifleþtirmek için <a target='_blank'>týklayýnýz</a>.";
+                string activeUri = $"http://localhost:4200/useractivate/{user.ActivatedGuid}";
+
+                string body = $"Merhaba {user.UserName} <br><br> Hesabýnýzý" + $"aktifleþtirmek için <a href='{activeUri}' target='_blank'>týklayýnýz</a>.";
 
                 mailHelper.SendMail(body, user.Email, "Hesap Aktifleþtirme");
                 return user;
@@ -69,6 +77,24 @@ namespace BusinessLayer
             return null;
         }
 
+
+        public async Task<User> ActivateUser(Guid activateId)
+        {
+            User user = await userRepository.GetAsync(x => x.ActivatedGuid == activateId);
+
+            if( user != null)
+            {
+                if (user.IsActive)
+                {
+                   
+                }
+
+                user.IsActive = true;
+                await userRepository.Update(user);
+            }
+            return user;
+        }
+             
         public void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using(var hmac = new System.Security.Cryptography.HMACSHA512()){
@@ -90,5 +116,7 @@ namespace BusinessLayer
                 return true;
             }
         }
+
+
     }
 }

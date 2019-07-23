@@ -55,6 +55,10 @@ namespace BlogProject.API
             services.AddScoped<IRepository<Comment>, Repository<Comment>>();
             services.AddScoped<IRepository<Like>, Repository<Like>>();
             services.AddScoped<IRepository<Photo>, Repository<Photo>>();
+            services.AddScoped<IRepository<Tag>, Repository<Tag>>();
+
+            //
+            //services.AddScoped(typeof(IHostingEnvironment));
 
             services.AddScoped(typeof(UserManager));
             services.AddScoped(typeof(CategoryManager));
@@ -62,6 +66,7 @@ namespace BlogProject.API
             services.AddScoped(typeof(CommentManager));
             services.AddScoped(typeof(LikeManager));
             services.AddScoped(typeof(PhotoManager));
+            services.AddScoped(typeof(TagManager));
             services.AddScoped(typeof(BlogContext));
 
             services.AddScoped(typeof(MailHelper));

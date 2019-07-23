@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlogProject.API.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class LikeController : Controller
     {
         private readonly LikeManager likeManager;
@@ -32,11 +34,21 @@ namespace BlogProject.API.Controllers
         }
 
         [HttpPost("insert")]
-        public async Task<IActionResult> InsertNote(Like like)
+        public async Task<IActionResult> InsertLike(Like like)
         {
             //var insertValue = mapper.Map<Like>(commentModel);
 
             await likeManager.Insert(like);
+
+            return StatusCode(201);
+        }
+
+        [HttpPost("delete")]
+        public async Task<IActionResult> DeleteNote(Like like)
+        {
+            //var insertValue = mapper.Map<Like>(commentModel);
+
+            await likeManager.Delete(like);
 
             return StatusCode(201);
         }
