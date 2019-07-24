@@ -42,11 +42,12 @@ namespace BlogProject.API
                  });
 
            
-            string connection = @"Server=DESKTOP-LDVGTNI\SQLEXPRESS;Database=BlogProject;Trusted_Connection=True;MultipleActiveResultSets=true";
+            string connection = @"Server=tcp:articlesorigin.database.windows.net,1433;Initial Catalog=BlogProject;Persist Security Info=False;User ID=fatihfurkanarslan;Password=furkan26_;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             //db connection
             services.AddDbContext<BlogContext>(x => x.UseSqlServer(connection, b=> b.MigrationsAssembly("BlogProject.API")));
              services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
              services.Configure<MailSettings>(Configuration.GetSection("MailHelperSettings"));
+            services.BuildServiceProvider().GetService<BlogContext>().Database.Migrate();
            
             //created for dependency injection
             services.AddScoped<IRepository<User>, Repository<User>>();
