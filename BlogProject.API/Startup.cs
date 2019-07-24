@@ -47,7 +47,7 @@ namespace BlogProject.API
             services.AddDbContext<BlogContext>(x => x.UseSqlServer(connection, b=> b.MigrationsAssembly("BlogProject.API")));
              services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
              services.Configure<MailSettings>(Configuration.GetSection("MailHelperSettings"));
-            services.BuildServiceProvider().GetService<BlogContext>().Database.Migrate();
+            //services.BuildServiceProvider().GetService<BlogContext>().Database.Migrate();
            
             //created for dependency injection
             services.AddScoped<IRepository<User>, Repository<User>>();
