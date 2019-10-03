@@ -63,36 +63,36 @@ namespace BlogProject.API.Controllers
 
         [HttpPost("insert")]
         public async Task<IActionResult> InsertCategory([FromForm]CategoryInsertModel model)
-        {
+        {           
 
-            var file = model.File;
+            //var file = model.File;
 
-            var uploadResult = new ImageUploadResult();
+            //var uploadResult = new ImageUploadResult();
 
-            if (file.Length > 0)
-            {
-                using (var stream = file.OpenReadStream())
-                {
-                    var uploadParams = new ImageUploadParams()
-                    {
-                        File = new FileDescription(file.Name, stream),
-                        Transformation = new Transformation()
-                            .Width(500).Height(500).Crop("fill").Gravity("face")
-                    };
+            //if (file.Length > 0)
+            //{
+            //    using (var stream = file.OpenReadStream())
+            //    {
+            //        var uploadParams = new ImageUploadParams()
+            //        {
+            //            File = new FileDescription(file.Name, stream),
+            //            Transformation = new Transformation()
+            //                .Width(500).Height(500).Crop("fill").Gravity("face")
+            //        };
 
-                    uploadResult = _cloudinary.Upload(uploadParams);
-                }
-            }
+            //        uploadResult = _cloudinary.Upload(uploadParams);
+            //    }
+            //}
 
-            model.PhotoUrl = uploadResult.Uri.ToString();
-            model.PublicId = uploadResult.PublicId;
+            //model.PhotoUrl = uploadResult.Uri.ToString();
+            //model.PublicId = uploadResult.PublicId;
 
 
             var insertValue = mapper.Map<Category>(model);
 
-            await categoryManager.Insert(insertValue);
+            var result = await categoryManager.Insert(insertValue);
 
-            return StatusCode(201);
+            return Ok(result);
         }
 
         [HttpDelete("delete/{id}")]
@@ -114,7 +114,7 @@ namespace BlogProject.API.Controllers
 
             var uploadResult = new ImageUploadResult();
 
-            if (file.Length > 0)
+            if (file != null)
             {
                 using (var stream = file.OpenReadStream())
                 {
@@ -127,15 +127,16 @@ namespace BlogProject.API.Controllers
 
                     uploadResult = _cloudinary.Upload(uploadParams);
                 }
+
+                categoryModel.PhotoUrl = uploadResult.Uri.ToString();
             }
 
-            categoryModel.PhotoUrl = uploadResult.Uri.ToString();
 
             if (categoryModel != null)
             {
                 Category category = await categoryManager.GetCategory(categoryModel.Id);
 
-                category.Name = categoryModel.Name;
+                category.Categoryname = categoryModel.Categoryname;
                 category.Description = categoryModel.Description;
                 category.PhotoUrl = categoryModel.PhotoUrl;
 

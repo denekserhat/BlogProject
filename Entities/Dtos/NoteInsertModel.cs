@@ -10,9 +10,13 @@ namespace Entities.Dtos
         public string Description { get; set; }
         public string Text { get; set; }
 
+        public IFormFile File { get; set; }
+
         public List<string> Tags { get; set; }
 
         public bool isDraft { get; set; }
+
+        public string MainPhotourl { get; set; }
         // public string PhotoUrl { get; set; }
         // public List<string> Photos { get; set; }
 

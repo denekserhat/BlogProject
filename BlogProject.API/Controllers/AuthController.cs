@@ -33,9 +33,9 @@ namespace BlogProject.API.Controllers
         [HttpPost("register")]
          public async Task<ActionResult> Register(UserRegisterModel userModel){
 
-         await userManager.Register(userModel);
+         var result = await userManager.Register(userModel);
 
-            return StatusCode(201);
+            return Ok(result);
         
         }
         
@@ -53,37 +53,39 @@ namespace BlogProject.API.Controllers
         [HttpPost("login")]
         public async Task<ActionResult> Login(UserForLoginModel userModel)
         {
+            
+                var user = await userManager.Login(userModel);
 
-            var user = await userManager.Login(userModel);
+                if (user == null) Unauthorized();                 
+                
 
-            if (user == null) Unauthorized();
-
-            var claims = new[]{
+                var claims = new[]{
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.UserName)
-            };
+                };
 
-            //here creating token
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
+                //here creating token
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
 
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddDays(10),
-                SigningCredentials = creds
-            };
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(claims),
+                    Expires = DateTime.Now.AddDays(10),
+                    SigningCredentials = creds
+                };
 
-            var tokenHandler = new JwtSecurityTokenHandler();
+                var tokenHandler = new JwtSecurityTokenHandler();
 
-            var token = tokenHandler.CreateToken(tokenDescriptor);
+                var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            //here gives a token as return
-            return Ok(new
-            {
-                token = tokenHandler.WriteToken(token)
-            });
+                //here gives a token as return
+                return Ok(new
+                {
+                    token = tokenHandler.WriteToken(token)
+                });     
+           
         }
 
     }

@@ -53,28 +53,42 @@ namespace BusinessLayer
         {
             byte[] passwordSalt, passwordHash;
 
-            CreatePasswordHash(registerModel.password, out passwordHash, out passwordSalt);
+            User checkUser = await userRepository.GetAsync(x => x.UserName == registerModel.username || x.Email == registerModel.email);
 
-            var check = userRepository.Insert(new User {
-                UserName = registerModel.username,
-                Email = registerModel.email,
-                ActivatedGuid = Guid.NewGuid(),
-                PasswordHash = passwordHash,
-                PasswordSalt = passwordSalt,
-                Photourl = "http://www.iconninja.com/files/1024/108/58/users-human-avatar-people-male-account-person-user-man-profile-icon.png"
-            });
+            if (checkUser == null)
+            {
+                CreatePasswordHash(registerModel.password, out passwordHash, out passwordSalt);
 
-            if(check.Result > 0){
-                User user = await userRepository.GetAsync(x=> x.UserName == registerModel.username);
+                var check = userRepository.Insert(new User
+                {
+                    UserName = registerModel.username,
+                    Email = registerModel.email,
+                    ActivatedGuid = Guid.NewGuid(),
+                    PasswordHash = passwordHash,
+                    PasswordSalt = passwordSalt,
+                    Photourl = "http://www.iconninja.com/files/1024/108/58/users-human-avatar-people-male-account-person-user-man-profile-icon.png"
+                });
 
-                string activeUri = $"http://localhost:4200/useractivate/{user.ActivatedGuid}";
+                if (check.Result > 0)
+                {
+                    User user = await userRepository.GetAsync(x => x.UserName == registerModel.username);
 
-                string body = $"Merhaba {user.UserName} <br><br> Hesabýnýzý" + $"aktifleþtirmek için <a href='{activeUri}' target='_blank'>týklayýnýz</a>.";
+                    string activeUri = $"http://localhost:4200/useractivate/{user.ActivatedGuid}";
 
-                mailHelper.SendMail(body, user.Email, "Hesap Aktifleþtirme");
-                return user;
+                    string body = $"Merhaba {user.UserName} <br><br> Hesabýnýzý" + $"aktifleþtirmek için <a href='{activeUri}' target='_blank'>týklayýnýz</a>.";
+
+                    mailHelper.SendMail(body, user.Email, "Hesap Aktifleþtirme");
+                    return user;
+                }
+                return null;
+
             }
-            return null;
+            else
+            {
+                return null;
+            }
+
+          
         }
 
 

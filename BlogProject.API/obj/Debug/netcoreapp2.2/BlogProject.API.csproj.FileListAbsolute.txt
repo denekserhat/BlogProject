@@ -62,8 +62,10 @@ C:\Users\fatihfurkan.DESKTOP-LDVGTNI\Desktop\Github\BlogProject\BlogProject.API\
 C:\Users\fatihfurkan.DESKTOP-LDVGTNI\Desktop\Github\BlogProject\BlogProject.API\bin\Debug\netcoreapp2.2\BusinessLayer.dll
 C:\Users\fatihfurkan.DESKTOP-LDVGTNI\Desktop\Github\BlogProject\BlogProject.API\bin\Debug\netcoreapp2.2\DataAccessLayer.dll
 C:\Users\fatihfurkan.DESKTOP-LDVGTNI\Desktop\Github\BlogProject\BlogProject.API\bin\Debug\netcoreapp2.2\Entities.dll
+C:\Users\fatihfurkan.DESKTOP-LDVGTNI\Desktop\Github\BlogProject\BlogProject.API\bin\Debug\netcoreapp2.2\Helper.dll
 C:\Users\fatihfurkan.DESKTOP-LDVGTNI\Desktop\Github\BlogProject\BlogProject.API\bin\Debug\netcoreapp2.2\BusinessLayer.pdb
 C:\Users\fatihfurkan.DESKTOP-LDVGTNI\Desktop\Github\BlogProject\BlogProject.API\bin\Debug\netcoreapp2.2\DataAccessLayer.pdb
+C:\Users\fatihfurkan.DESKTOP-LDVGTNI\Desktop\Github\BlogProject\BlogProject.API\bin\Debug\netcoreapp2.2\Helper.pdb
 C:\Users\fatihfurkan.DESKTOP-LDVGTNI\Desktop\Github\BlogProject\BlogProject.API\bin\Debug\netcoreapp2.2\Entities.pdb
 C:\Users\fatihfurkan.DESKTOP-LDVGTNI\Desktop\Github\BlogProject\BlogProject.API\obj\Debug\netcoreapp2.2\BlogProject.API.csprojAssemblyReference.cache
 C:\Users\fatihfurkan.DESKTOP-LDVGTNI\Desktop\Github\BlogProject\BlogProject.API\obj\Debug\netcoreapp2.2\BlogProject.API.csproj.CoreCompileInputs.cache
@@ -75,5 +77,3 @@ C:\Users\fatihfurkan.DESKTOP-LDVGTNI\Desktop\Github\BlogProject\BlogProject.API\
 C:\Users\fatihfurkan.DESKTOP-LDVGTNI\Desktop\Github\BlogProject\BlogProject.API\obj\Debug\netcoreapp2.2\BlogProject.API.csproj.CopyComplete
 C:\Users\fatihfurkan.DESKTOP-LDVGTNI\Desktop\Github\BlogProject\BlogProject.API\obj\Debug\netcoreapp2.2\BlogProject.API.dll
 C:\Users\fatihfurkan.DESKTOP-LDVGTNI\Desktop\Github\BlogProject\BlogProject.API\obj\Debug\netcoreapp2.2\BlogProject.API.pdb
-C:\Users\fatihfurkan.DESKTOP-LDVGTNI\Desktop\Github\BlogProject\BlogProject.API\bin\Debug\netcoreapp2.2\Helper.dll
-C:\Users\fatihfurkan.DESKTOP-LDVGTNI\Desktop\Github\BlogProject\BlogProject.API\bin\Debug\netcoreapp2.2\Helper.pdb

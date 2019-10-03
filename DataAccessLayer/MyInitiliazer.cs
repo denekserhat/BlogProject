@@ -65,7 +65,7 @@ namespace DataAccessLayer
             {
                 Category cat = new Category
                 {
-                    Name = "user",   
+                    Categoryname = "categoryname",   
                     Description = "description",               
                     OnModified = DateTime.Now.AddHours(1),
                     OnModifiedUsername = "fatiharslan",

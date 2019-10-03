@@ -34,7 +34,17 @@ namespace BusinessLayer
 
         public async Task<int> Insert(Category category)
         {
-            return await categoryRepository.Insert(category);
+            Category cat = await categoryRepository.GetAsync(x => x.Categoryname == category.Categoryname);
+
+            if(cat == null)
+            {
+               return await categoryRepository.Insert(category);
+            }
+            else
+            {
+                return 0;
+            }
+    
         }
 
         public async Task<int> Update(Category category)

@@ -15,6 +15,7 @@ namespace Entities
         public DateTime OnModified { get; set; }
         public string OnModifiedUsername { get; set; }
         public bool IsDraft { get; set; }
+        public string MainPhotourl { get; set; }
 
         public IList<Comment> Comments { get; set; }
         public IList<Like> Likes { get; set; }

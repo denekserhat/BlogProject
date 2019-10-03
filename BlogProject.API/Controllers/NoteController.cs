@@ -43,16 +43,16 @@ namespace BlogProject.API.Controllers
             _cloudinary = new Cloudinary(acc);
         }
 
-          [HttpGet("getnotesbycategory/{id}")]
+        [HttpGet("getnotesbycategory/{id}")]
         public IActionResult GetNoteByCategory(int id)
         {
             var notes = noteManager.GetNotesByCategory(id);
 
-           // var categoryToReturn = mapper.Map<UserDetailModel>(category);
+            // var categoryToReturn = mapper.Map<UserDetailModel>(category);
 
             return Ok(notes);
         }
-      
+
         [HttpGet("getnotesbyuser/{id}")]
         public IActionResult GetNoteByUser(int id)
         {
@@ -68,11 +68,11 @@ namespace BlogProject.API.Controllers
         [HttpGet("getnotes")]
         public async Task<IActionResult> GetNotes([FromQuery]NoteParams noteParams)
         {
-           var notes = await noteManager.GetNotesByDescending(noteParams);
+            var notes = await noteManager.GetNotesByDescending(noteParams);
 
             Response.AddPagination(notes.CurrentPage, notes.PageSize, notes.TotalCount, notes.TotalPages);
 
-           // var categoryToReturn = mapper.Map<UserDetailModel>(category);
+            // var categoryToReturn = mapper.Map<UserDetailModel>(category);
 
             return Ok(notes);
         }
@@ -100,9 +100,9 @@ namespace BlogProject.API.Controllers
         [HttpPost("draft")]
         public async Task<IActionResult> DraftNote(NoteInsertModel noteModel)
         {
-             var insertValue = mapper.Map<Note>(noteModel);
+            var insertValue = mapper.Map<Note>(noteModel);
 
-             await noteManager.Insert(insertValue);
+            await noteManager.Insert(insertValue);
 
             return Ok(insertValue.Id);
         }
@@ -169,7 +169,7 @@ namespace BlogProject.API.Controllers
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteNote(int id)
         {
- 
+
             Note note = await noteManager.GetNote(id);
             await noteManager.Delete(note);
 
@@ -179,15 +179,17 @@ namespace BlogProject.API.Controllers
         [HttpPut("update")]
         public async Task<IActionResult> UpdateNote(NoteUpdateModel noteModel)
         {
- 
+
             Note note = await noteManager.GetNote(noteModel.Id);
 
-            if(note == null)
+            if (note == null)
             {
                 return StatusCode(400);
             }
             else
             {
+                note.MainPhotourl = noteModel.MainPhotourl;
+
                 note.Title = noteModel.Title;
                 note.Text = noteModel.Text;
                 note.IsDraft = noteModel.isDraft;
@@ -198,7 +200,28 @@ namespace BlogProject.API.Controllers
                 return Ok(result);
             }
 
-      
+
         }
+
+        [HttpPut("updateImage")]
+        public async Task<IActionResult> UpdateNoteImage(NoteUpdateModel noteModel)
+        {
+            Note note = await noteManager.GetNote(noteModel.Id);
+
+            if (note == null)
+            {
+                return StatusCode(400);
+            }
+            else
+            {
+
+                note.MainPhotourl = noteModel.MainPhotourl;          
+
+                int result = await noteManager.Update(note);
+
+                return Ok(result);
+            }
+        }
+
     }
 }

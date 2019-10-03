@@ -7,7 +7,7 @@ namespace Entities
     public class Category
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Categoryname { get; set; }
         public string Description { get; set; }
         public DateTime OnModified { get; set; }
         public string OnModifiedUsername { get; set; }

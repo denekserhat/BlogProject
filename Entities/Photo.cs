@@ -11,7 +11,6 @@ namespace Entities
         public DateTime OnCreated { get; set; }
         public DateTime OnModified { get; set; }
         public string OnModifiedUsername { get; set; }
-
         public string PublicId { get; set; }
 
         public Note Note { get; set; }
