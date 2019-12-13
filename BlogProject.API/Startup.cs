@@ -42,7 +42,7 @@ namespace BlogProject.API
                  });
 
             //string connection = @"Server=DESKTOP-LDVGTNI\SQLEXPRESS;Database=BlogProject;Trusted_Connection=True;MultipleActiveResultSets=true";
-            string connection = @"Server=FATIH-FURKAN-AR\SQLEXPRESS;Database=BlogProject;Trusted_Connection=True;";
+            string connection = @"Server=DESKTOP-LDVGTNI\SQLEXPRESS;Database=BlogProject;Trusted_Connection=True;";
             //db connection
             services.AddDbContext<BlogContext>(x => x.UseSqlServer(connection, b=> b.MigrationsAssembly("BlogProject.API")));
              services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
